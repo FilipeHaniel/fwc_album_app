@@ -40,7 +40,7 @@ class ButtonStyles {
             TextStyles.i.textSecondaryFontExtraBold.copyWith(fontSize: 14),
       );
 
-  ButtonStyle get primaryOutineButton => OutlinedButton.styleFrom(
+  ButtonStyle get primaryOutlineButton => OutlinedButton.styleFrom(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
