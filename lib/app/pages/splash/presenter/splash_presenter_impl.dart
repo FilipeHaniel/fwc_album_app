@@ -10,7 +10,7 @@ class SplashPresenterImpl implements SplashPresenter {
 
     await Future.delayed(const Duration(seconds: 2));
 
-    _view.logged(true);
+    _view.logged(false);
   }
 
   @override
