@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:fwc_album_app/app/core/ui/styles/text_styles.dart';
 import 'package:fwc_album_app/app/core/ui/widgets/button.dart';
 import 'package:fwc_album_app/app/pages/auth/register/presenter/register_presenter.dart';
+import 'package:fwc_album_app/app/pages/auth/register/view/register_view_impl.dart';
 import 'package:validatorless/validatorless.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -16,7 +19,7 @@ class RegisterPage extends StatefulWidget {
   State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _RegisterPageState extends RegisterViewImpl {
   final _formKey = GlobalKey<FormState>();
 
   final _name = TextEditingController();
@@ -39,6 +42,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       appBar: AppBar(),
       body: Form(
+        key: _formKey,
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -84,6 +88,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     const SizedBox(height: 20),
                     TextFormField(
                       controller: _password,
+                      obscureText: true,
                       decoration: const InputDecoration(
                         label: Text('Senha *'),
                       ),
@@ -96,6 +101,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     const SizedBox(height: 20),
                     TextFormField(
                       controller: _confirmPassword,
+                      obscureText: true,
                       decoration: const InputDecoration(
                         label: Text('Confirma senha *'),
                       ),
@@ -112,10 +118,14 @@ class _RegisterPageState extends State<RegisterPage> {
                       label: 'Cadastrar',
                       width: MediaQuery.of(context).size.width * .9,
                       onPressed: () {
+                        log('passou por aqui!!!');
+
                         final isFormValid =
                             _formKey.currentState?.validate() ?? false;
 
                         if (isFormValid) {
+                          showLoader();
+
                           widget.presenter.register(
                             name: _name.text,
                             email: _email.text,
