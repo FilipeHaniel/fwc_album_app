@@ -31,11 +31,13 @@ class AuthRepositoryImpl implements AuthRepository {
     } on DioException catch (e, s) {
       log('Erro ao realizar login', error: e, stackTrace: s);
 
-      if (e.response?.statusCode == 401) {
+      final errorCode = e.response?.statusCode;
+
+      if (errorCode == 401) {
         throw UnauthorizedException();
       }
 
-      throw RepositoryException(message: 'Erro ao realizar login');
+      throw RepositoryException(message: 'Erro ao realizar login $errorCode');
     }
   }
 

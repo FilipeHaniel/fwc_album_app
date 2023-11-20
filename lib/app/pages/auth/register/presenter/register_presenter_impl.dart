@@ -34,7 +34,7 @@ class RegisterPresenterImpl implements RegisterPresenter {
     } on Exception catch (e, s) {
       log('Erro ao cadastrar usuário', error: e, stackTrace: s);
 
-      _view.registerSuccess();
+      _view.registerError();
     }
   }
 
