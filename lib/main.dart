@@ -5,5 +5,5 @@ import 'package:fwc_album_app/fwc_album_app.dart';
 Future<void> main() async {
   await Env.i.load();
 
-  runApp(const FwcAlbumApp());
+  runApp(FwcAlbumApp());
 }
