@@ -14,6 +14,8 @@ class HomePresenterImpl implements HomePresenter {
   @override
   Future<void> getUserData() async {
     try {
+      _view.showLoader();
+      
       final user = await _userRepository.getMe();
 
       _view.updateUser(user);

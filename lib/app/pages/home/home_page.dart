@@ -96,7 +96,8 @@ class _HomePageState extends HomeViewImpl {
                         labelStyle: context
                             .textStyles.textSecondaryFontExtraBold
                             .copyWith(color: context.colors.yellow),
-                        onPressed: () {},
+                        onPressed: () =>
+                            Navigator.of(context).pushNamed('/my-stickers'),
                       ),
                     ],
                   ),
